@@ -46,23 +46,25 @@
                 android:text="Critical"
                 android:textColor="@color/red"
                 android:textSize="10sp"
-                android:onClick="radiobuttonClick"
+                android:onClick="rbCriticalClick"
                 />
             <RadioButton
                 android:id="@+id/rb_major"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Major"
-                android:textColor="@color/yellow"
+                android:textColor="@color/orange"
                 android:textSize="10sp"
+                android:onClick="rbMajorClick"
                  />
             <RadioButton
-                android:id="@+id/minor"
+                android:id="@+id/rb_minor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Minor"
                 android:textColor="@color/green"
-                android:textSize="10sp"/>
+                android:textSize="10sp"
+                android:onClick="rbMinorClick"/>
         </LinearLayout>
 
 
