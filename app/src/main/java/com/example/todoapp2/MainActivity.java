@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initList(){
-        taskList=new ArrayList<>();
+        taskList=generateTasks();
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         taskAdapter=new TaskAdapter(taskList);
@@ -69,6 +69,26 @@ public class MainActivity extends AppCompatActivity
                 startActivityForResult(intent,101);
             }
         });
+    }
+
+    private List<Task> generateTasks() {
+        List<Task> tasks=new ArrayList<>();
+        Task task1=new Task();
+        task1.setTitle("Task1");
+        task1.setDescription("Description1");
+        task1.setSTATUS(Task.Status.CRITICAL);
+        Task task2=new Task();
+        task2.setTitle("Task2");
+        task2.setDescription("Description2");
+        task2.setSTATUS(Task.Status.MINOR);
+        Task task3=new Task();
+        task3.setTitle("Task3");
+        task3.setDescription("Description3");
+        task3.setSTATUS(Task.Status.MAJOR);
+        tasks.add(task1);
+        tasks.add(task2);
+        tasks.add(task3);
+        return tasks;
     }
 
     @Override
