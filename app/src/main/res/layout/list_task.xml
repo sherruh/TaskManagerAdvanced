@@ -16,6 +16,7 @@
         android:layout_weight="0.5">
         <TextView
             android:id="@+id/tetxTitle"
+            android:layout_marginLeft="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -25,6 +26,7 @@
 
         <TextView
             android:id="@+id/textDescription"
+            android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
