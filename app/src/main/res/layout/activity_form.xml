@@ -8,28 +8,65 @@
     android:orientation="vertical"
     tools:context=".FormActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <
-        <EditText
-            android:hint="Title"
-            android:id="@+id/editTitle"
+
+        <LinearLayout
+            android:id="@+id/linear_edits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"/>
+            android:layout_toEndOf="@id/linear_radiobuttons"
+            android:orientation="vertical">
 
-        <RadioButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true" />
-        <RadioButton
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp" />
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/editDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_radiobuttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_critical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Critical"
+                android:textColor="@color/red"
+                android:textSize="10sp"
+                android:onClick="radiobuttonClick"
+                />
+            <RadioButton
+                android:id="@+id/rb_major"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Major"
+                android:textColor="@color/yellow"
+                android:textSize="10sp"
+                 />
+            <RadioButton
+                android:id="@+id/minor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minor"
+                android:textColor="@color/green"
+                android:textSize="10sp"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 
     <Button

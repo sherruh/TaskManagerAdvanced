@@ -29,4 +29,7 @@ public class FormActivity extends AppCompatActivity {
         setResult(RESULT_OK,intent);
         finish();
     }
+
+    public void radiobuttonClick(View view) {
+    }
 }
