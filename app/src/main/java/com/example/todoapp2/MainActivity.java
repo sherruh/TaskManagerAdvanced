@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity
 
     private TaskAdapter taskAdapter;
     private List<Task> taskList;
+    private List<Task> tasksAll;
+    private List<Task> tasksCritical;
+    private List<Task> tasksMajor;
+    private List<Task> tasksMinor;
+    private List<Task> tasksDeleted;
     private int position;
 
     @Override
@@ -108,6 +113,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void distributeTask(Task task){}
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -146,13 +153,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_all) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_critical) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_major) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_minor) {
+
+        } else if (id == R.id.nav_deleted) {
 
         } else if (id == R.id.nav_share) {
 
