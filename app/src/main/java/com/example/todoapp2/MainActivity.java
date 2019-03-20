@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -127,20 +128,33 @@ public class MainActivity extends AppCompatActivity
         Task.Status STATUS=task.getSTATUS();
         switch (STATUS){
             case CRITICAL:
-                tasksCritical.add(task);
+                setTaskToList(task,tasksCritical);
                 break;
             case MAJOR:
-                tasksMajor.add(task);
+                setTaskToList(task,tasksMajor);
                 break;
             case MINOR:
-                tasksMinor.add(task);
+                setTaskToList(task,tasksMinor);
                 break;
         }
         if(STATUS!= Task.Status.DELETED){
-            taskList.add(task);
+            tasksAll.add(task);
         }else {
             tasksDeleted.add(task);
         }
+    }
+
+    void setTaskToList(Task task,List<Task> currentList){
+        if(tasksCritical.contains(task)){
+            tasksCritical.remove(task);
+        }
+        if(tasksMajor.contains(task)){
+            tasksMajor.remove(task);
+        }
+        if(tasksMinor.contains(task)){
+            tasksMinor.remove(task);
+        }
+        currentList.add(task);
     }
 
     @Override
@@ -182,13 +196,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_all) {
-            // Handle the camera action
+            switchTasks(tasksAll);
         } else if (id == R.id.nav_critical) {
-
+            switchTasks(tasksCritical);
         } else if (id == R.id.nav_major) {
-
+            switchTasks(tasksMajor);
         } else if (id == R.id.nav_minor) {
-
+            switchTasks(tasksMinor);
         } else if (id == R.id.nav_deleted) {
 
         } else if (id == R.id.nav_share) {
@@ -200,5 +214,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void switchTasks(List<Task> currentTasks){
+        taskList.clear();
+        taskAdapter.notifyDataSetChanged();
+        taskList.addAll(currentTasks);
+        taskAdapter.notifyDataSetChanged();
     }
 }
