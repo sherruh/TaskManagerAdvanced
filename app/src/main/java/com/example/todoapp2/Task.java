@@ -1,23 +1,29 @@
 package com.example.todoapp2;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public class Task implements Serializable {
 
     String title;
     String description;
-
-
+    int taskId;
 
     Status STATUS;
     enum Status{
         CRITICAL,
         MAJOR,
-        MINOR
+        MINOR,
+        DELETED
     }
 
     public Task() {
         STATUS=Status.MAJOR;
+        taskId=new Random().nextInt(99999999);
+    }
+
+    public int getTaskId() {
+        return taskId;
     }
 
     public Status getSTATUS() {

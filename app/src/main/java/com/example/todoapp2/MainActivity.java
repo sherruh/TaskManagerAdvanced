@@ -60,7 +60,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initList(){
+        tasksAll=new ArrayList<>();
+        tasksCritical=new ArrayList<>();
+        tasksMajor=new ArrayList<>();
+        tasksMinor=new ArrayList<>();
+        tasksDeleted=new ArrayList<>();
+        taskList=new ArrayList<>();
         taskList=generateTasks();
+
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         taskAdapter=new TaskAdapter(taskList);
@@ -93,6 +100,9 @@ public class MainActivity extends AppCompatActivity
         tasks.add(task1);
         tasks.add(task2);
         tasks.add(task3);
+        for (Task task:tasks){
+            distributeTask(task);
+        }
         return tasks;
     }
 
@@ -113,7 +123,25 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void distributeTask(Task task){}
+    private void distributeTask(Task task){
+        Task.Status STATUS=task.getSTATUS();
+        switch (STATUS){
+            case CRITICAL:
+                tasksCritical.add(task);
+                break;
+            case MAJOR:
+                tasksMajor.add(task);
+                break;
+            case MINOR:
+                tasksMinor.add(task);
+                break;
+        }
+        if(STATUS!= Task.Status.DELETED){
+            taskList.add(task);
+        }else {
+            tasksDeleted.add(task);
+        }
+    }
 
     @Override
     public void onBackPressed() {
