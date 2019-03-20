@@ -14,7 +14,8 @@ public class Task implements Serializable {
         CRITICAL,
         MAJOR,
         MINOR,
-        DELETED
+        DELETED,
+        ALL
     }
 
     public Task() {

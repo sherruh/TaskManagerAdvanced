@@ -1,5 +1,6 @@
 package com.example.todoapp2;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity
     private List<Task> tasksMinor;
     private List<Task> tasksDeleted;
     private int position;
+    private Task.Status STATUS_FILTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity
         tasksDeleted=new ArrayList<>();
         taskList=new ArrayList<>();
         taskList=generateTasks();
+
+        STATUS_FILTER=Task.Status.ALL;
 
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -113,7 +117,8 @@ public class MainActivity extends AppCompatActivity
             switch (requestCode){
                 case 100:
                     Task task= (Task) data.getSerializableExtra("task");
-                    taskList.add(0,task);
+                    distributeTask(task);
+                    showTask(task);
                     break;
                 case 101:
                     taskList.set(position,(Task)data.getSerializableExtra("task"));
@@ -121,6 +126,12 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
             taskAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void showTask(Task task) {
+        if(task.getSTATUS()==STATUS_FILTER || STATUS_FILTER== Task.Status.ALL){
+            taskList.add(0,task);
         }
     }
 
@@ -138,9 +149,9 @@ public class MainActivity extends AppCompatActivity
                 break;
         }
         if(STATUS!= Task.Status.DELETED){
-            tasksAll.add(task);
+            tasksAll.add(0,task);
         }else {
-            tasksDeleted.add(task);
+            tasksDeleted.add(0,task);
         }
     }
 
@@ -154,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         if(tasksMinor.contains(task)){
             tasksMinor.remove(task);
         }
-        currentList.add(task);
+        currentList.add(0,task);
     }
 
     @Override
@@ -197,14 +208,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_all) {
             switchTasks(tasksAll);
+            STATUS_FILTER= Task.Status.ALL;
         } else if (id == R.id.nav_critical) {
             switchTasks(tasksCritical);
+            STATUS_FILTER= Task.Status.CRITICAL;
         } else if (id == R.id.nav_major) {
             switchTasks(tasksMajor);
+            STATUS_FILTER= Task.Status.MAJOR;
         } else if (id == R.id.nav_minor) {
             switchTasks(tasksMinor);
+            STATUS_FILTER= Task.Status.MINOR;
         } else if (id == R.id.nav_deleted) {
-
+            STATUS_FILTER= Task.Status.DELETED;
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
