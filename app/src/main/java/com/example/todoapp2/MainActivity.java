@@ -1,11 +1,13 @@
 package com.example.todoapp2;
 
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     private List<Task> tasksDeleted;
     private int position;
     private Task.Status STATUS_FILTER;
+    private AlertDialog.Builder ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,39 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initList();
+        initAlertDialodDelete();
+    }
+
+    private void initAlertDialodDelete() {
+        ad=new AlertDialog.Builder(MainActivity.this);
+        ad.setMessage("Delete this task?");
+        ad.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                Toast.makeText(MainActivity.this, "Task deleted",
+                        Toast.LENGTH_LONG).show();
+                deleteTask(taskList.get(position));
+            }
+        });
+        ad.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                Toast.makeText(MainActivity.this, "Task didn't delete", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+        ad.setCancelable(true);
+        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+                Toast.makeText(MainActivity.this, "Task didn't delete",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void deleteTask(Task task) {
+        task.setSTATUS(Task.Status.DELETED);
+        distributeTask(task);
+        setTaskToList(task,tasksDeleted);
+        taskAdapter.notifyDataSetChanged();
     }
 
     private void initList(){
@@ -84,6 +121,12 @@ public class MainActivity extends AppCompatActivity
                 Intent intent=new Intent(MainActivity.this,FormActivity.class);
                 intent.putExtra("task",taskList.get(pos));
                 startActivityForResult(intent,101);
+            }
+
+            @Override
+            public void onLongClick(int pos) {
+                position=pos;
+                ad.show();
             }
         });
     }
@@ -147,15 +190,17 @@ public class MainActivity extends AppCompatActivity
             case MINOR:
                 setTaskToList(task,tasksMinor);
                 break;
+            case DELETED:
+                tasksDeleted.add(0,task);
+                tasksAll.remove(task);
+                taskList.remove(task);
         }
         if(STATUS!= Task.Status.DELETED){
             tasksAll.add(0,task);
-        }else {
-            tasksDeleted.add(0,task);
         }
     }
 
-    void setTaskToList(Task task,List<Task> currentList){
+    void setTaskToList(Task task,List<Task> targetList){
         if(tasksCritical.contains(task)){
             tasksCritical.remove(task);
         }
@@ -165,7 +210,7 @@ public class MainActivity extends AppCompatActivity
         if(tasksMinor.contains(task)){
             tasksMinor.remove(task);
         }
-        currentList.add(0,task);
+        targetList.add(0,task);
     }
 
     @Override
