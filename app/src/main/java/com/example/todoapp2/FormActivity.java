@@ -17,6 +17,7 @@ public class FormActivity extends AppCompatActivity {
     RadioButton rbMinor;
     View rootView;
     Task.Status STATUS;
+    Task task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class FormActivity extends AppCompatActivity {
         uncheckAll(rbMajor);
         STATUS= Task.Status.MAJOR;
 
-        Task task=(Task)getIntent().getSerializableExtra("task");
+        task=(Task)getIntent().getSerializableExtra("task");
         if(task!=null){ showTask(task);}
     }
 
@@ -55,7 +56,7 @@ public class FormActivity extends AppCompatActivity {
     public void onClick(View view) {
         String title=editTitle.getText().toString().trim();
         String description=editDesc.getText().toString().trim();
-        Task task=new Task();
+        if(task==null){task=new Task();}
         task.setTitle(title);
         task.setDescription(description);
         task.setSTATUS(STATUS);

@@ -157,20 +157,43 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(resultCode==RESULT_OK && data!=null){
+            Task task= (Task) data.getSerializableExtra("task");
             switch (requestCode){
                 case 100:
-                    Task task= (Task) data.getSerializableExtra("task");
                     distributeTask(task);
                     showTask(task);
                     break;
                 case 101:
-                    taskList.set(position,(Task)data.getSerializableExtra("task"));
+                    taskList.set(position,task);
+                    tasksAll.set(position,task);
+                    removeOldTask(task);
+                    distributeTask(task);
+                    tasksAll.remove(0);
                     taskAdapter.notifyDataSetChanged();
                     break;
             }
             taskAdapter.notifyDataSetChanged();
         }
     }
+
+    private void removeOldTask(Task task) {
+        for(Task taskInList:tasksCritical)
+            if (taskInList.getTaskId() == task.getTaskId()) {
+                tasksCritical.remove(taskInList);
+                break;
+            }
+        for(Task taskInList:tasksMajor)
+            if (taskInList.getTaskId() == task.getTaskId()) {
+                tasksMajor.remove(taskInList);
+                break;
+            }
+        for(Task taskInList:tasksMinor)
+            if (taskInList.getTaskId() == task.getTaskId()) {
+                tasksMinor.remove(taskInList);
+                break;
+            }
+    }
+
 
     private void showTask(Task task) {
         if(task.getSTATUS()==STATUS_FILTER || STATUS_FILTER== Task.Status.ALL){
