@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity
         tasksMinor=new ArrayList<>();
         tasksDeleted=new ArrayList<>();
         taskList=new ArrayList<>();
-        taskList=generateTasks();
+        generateTasks();
+        taskList.addAll(tasksAll);
 
         STATUS_FILTER=Task.Status.ALL;
 
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity
         taskAdapter.setClickListener(new TaskAdapter.ClickListener() {
             @Override
             public void onClick(int pos) {
+                if(taskList.get(pos).getSTATUS()== Task.Status.DELETED){return;}
                 position=pos;
                 Intent intent=new Intent(MainActivity.this,FormActivity.class);
                 intent.putExtra("task",taskList.get(pos));
@@ -145,9 +147,9 @@ public class MainActivity extends AppCompatActivity
         task3.setTitle("Task3");
         task3.setDescription("Description3");
         task3.setSTATUS(Task.Status.MAJOR);
-        tasks.add(task1);
-        tasks.add(task2);
-        tasks.add(task3);
+        tasks.add(0,task3);
+        tasks.add(0,task2);
+        tasks.add(0,task1);
         for (Task task:tasks){
             distributeTask(task);
         }
