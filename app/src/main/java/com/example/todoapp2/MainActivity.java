@@ -191,9 +191,9 @@ public class MainActivity extends AppCompatActivity
                 setTaskToList(task,tasksMinor);
                 break;
             case DELETED:
-                tasksDeleted.add(0,task);
                 tasksAll.remove(task);
                 taskList.remove(task);
+                taskAdapter.notifyDataSetChanged();
         }
         if(STATUS!= Task.Status.DELETED){
             tasksAll.add(0,task);
@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity
             switchTasks(tasksMinor);
             STATUS_FILTER= Task.Status.MINOR;
         } else if (id == R.id.nav_deleted) {
+            switchTasks(tasksDeleted);
             STATUS_FILTER= Task.Status.DELETED;
         } else if (id == R.id.nav_share) {
 

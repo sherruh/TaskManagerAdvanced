@@ -1,5 +1,6 @@
 package com.example.todoapp2;
 
+import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,6 +42,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     private void setStatusColor(ViewHolder viewHolder, Task task) {
+
+        viewHolder.textDesc.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
+        viewHolder.textTitle.setPaintFlags(Paint.LINEAR_TEXT_FLAG);
         switch (task.getSTATUS()){
             case CRITICAL:
                 viewHolder.layoutStatus.setBackgroundColor(viewHolder.
@@ -54,6 +58,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 viewHolder.layoutStatus.setBackgroundColor(viewHolder.
                         itemView.getResources().getColor(R.color.green));
                 break;
+            case DELETED:
+                viewHolder.textDesc.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                viewHolder.textTitle.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+                viewHolder.layoutStatus.setBackgroundColor(viewHolder.
+                        itemView.getResources().getColor(R.color.grey));
+                break;
+
         }
     }
 
