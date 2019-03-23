@@ -93,17 +93,19 @@ public class OnBoardActivity extends AppCompatActivity {
             switch (number){
                 case 0:
                     textView.setText("Hello");
-                    //imageView.setImageResource(R.drawable.);//TODO set image
+                    imageView.setImageResource(R.drawable.smile1);
                     rootView.setBackgroundResource(R.color.colorAccent);
                     button.setVisibility(View.GONE);
                     break;
                 case 1:
                     textView.setText("Kak dela?");
+                    imageView.setImageResource(R.drawable.smile2);
                     rootView.setBackgroundResource(R.color.colorPrimary);
                     button.setVisibility(View.GONE);
                     break;
                 case 2:
                     textView.setText("Chto delaesh?");
+                    imageView.setImageResource(R.drawable.smile3);
                     rootView.setBackgroundResource(R.color.colorPrimaryDark);
                     button.setVisibility(View.VISIBLE);
                     break;
