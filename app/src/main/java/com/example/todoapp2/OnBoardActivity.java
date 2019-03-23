@@ -55,6 +55,8 @@ public class OnBoardActivity extends AppCompatActivity {
     }
 
 
+
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -94,19 +96,19 @@ public class OnBoardActivity extends AppCompatActivity {
                 case 0:
                     textView.setText("Hello");
                     imageView.setImageResource(R.drawable.smile1);
-                    rootView.setBackgroundResource(R.color.colorAccent);
+                    rootView.setBackgroundResource(R.color.yellow);
                     button.setVisibility(View.GONE);
                     break;
                 case 1:
                     textView.setText("Kak dela?");
                     imageView.setImageResource(R.drawable.smile2);
-                    rootView.setBackgroundResource(R.color.colorPrimary);
+                    rootView.setBackgroundResource(R.color.red);
                     button.setVisibility(View.GONE);
                     break;
                 case 2:
                     textView.setText("Chto delaesh?");
                     imageView.setImageResource(R.drawable.smile3);
-                    rootView.setBackgroundResource(R.color.colorPrimaryDark);
+                    rootView.setBackgroundResource(R.color.green);
                     button.setVisibility(View.VISIBLE);
                     break;
             }
@@ -120,7 +122,14 @@ public class OnBoardActivity extends AppCompatActivity {
 
             return rootView;
         }
+
+        public void clickOnFinish(View view) {
+            startActivity(new Intent(getActivity(),MainActivity.class));
+            getActivity().finish();
+        }
     }
+
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
