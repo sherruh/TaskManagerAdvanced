@@ -21,6 +21,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chabbal.slidingdotsplash.SlidingSplashView;
+
+import me.relex.circleindicator.CircleIndicator;
+
 public class OnBoardActivity extends AppCompatActivity {
 
     /**
@@ -49,8 +53,8 @@ public class OnBoardActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
+        CircleIndicator indicator = (CircleIndicator)findViewById(R.id.indicator);
+        indicator.setViewPager(mViewPager);
 
     }
 
