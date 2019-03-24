@@ -89,6 +89,8 @@ public class OnBoardActivity extends AppCompatActivity {
             TextView textView = rootView.findViewById(R.id.textTitle);
             ImageView imageView=rootView.findViewById(R.id.imageView);
             Button button=rootView.findViewById(R.id.button);
+            Button btnNext=rootView.findViewById(R.id.button_next);
+            Button btnBefore=rootView.findViewById(R.id.button_before);
             int number=getArguments().getInt(ARG_SECTION_NUMBER);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
@@ -98,18 +100,23 @@ public class OnBoardActivity extends AppCompatActivity {
                     imageView.setImageResource(R.drawable.smile1);
                     rootView.setBackgroundResource(R.color.yellow);
                     button.setVisibility(View.GONE);
+                    btnBefore.setVisibility(View.GONE);
+                    btnNext.setVisibility(View.VISIBLE);
                     break;
                 case 1:
                     textView.setText("Kak dela?");
                     imageView.setImageResource(R.drawable.smile2);
                     rootView.setBackgroundResource(R.color.red);
                     button.setVisibility(View.GONE);
+                    btnBefore.setVisibility(View.VISIBLE);
+                    btnNext.setVisibility(View.VISIBLE);
                     break;
                 case 2:
                     textView.setText("Chto delaesh?");
                     imageView.setImageResource(R.drawable.smile3);
                     rootView.setBackgroundResource(R.color.green);
                     button.setVisibility(View.VISIBLE);
+                    btnNext.setVisibility(View.GONE);
                     break;
             }
             button.setOnClickListener(new View.OnClickListener() {
