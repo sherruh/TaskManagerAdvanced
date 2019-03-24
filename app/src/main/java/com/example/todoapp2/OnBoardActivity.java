@@ -56,7 +56,6 @@ public class OnBoardActivity extends AppCompatActivity {
 
 
 
-
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -134,6 +133,16 @@ public class OnBoardActivity extends AppCompatActivity {
             startActivity(new Intent(getActivity(),MainActivity.class));
             getActivity().finish();
         }
+
+
+    }
+
+    public void clickBefore(View view) {
+        mViewPager.setCurrentItem(mViewPager.getCurrentItem()-1);
+    }
+
+    public void clickNext(View view) {
+        mViewPager.setCurrentItem(mViewPager.getCurrentItem()+1);
     }
 
 
