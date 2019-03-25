@@ -6,20 +6,20 @@
 
     <ImageView
         android:id="@+id/dot1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:srcCompat="@drawable/ic_dot_uncheck"/>
 
     <ImageView
         android:id="@+id/dot2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:srcCompat="@drawable/ic_dot_uncheck"/>
 
     <ImageView
         android:id="@+id/dot3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         app:srcCompat="@drawable/ic_dot_uncheck"
         />
 

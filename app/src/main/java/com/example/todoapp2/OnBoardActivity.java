@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,18 +42,21 @@ public class OnBoardActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private ImageView[] dots;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_board);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        dots=new ImageView[]{findViewById(R.id.dot1),findViewById(R.id.dot2),findViewById(R.id.dot3)};
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -61,7 +65,10 @@ public class OnBoardActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int i) {
-
+                dots[0].setImageResource(R.drawable.ic_dot_uncheck);
+                dots[1].setImageResource(R.drawable.ic_dot_uncheck);
+                dots[2].setImageResource(R.drawable.ic_dot_uncheck);
+                dots[i].setImageResource(R.drawable.ic_dot_check);
             }
 
             @Override
@@ -110,6 +117,8 @@ public class OnBoardActivity extends AppCompatActivity {
             Button btnNext=rootView.findViewById(R.id.button_next);
             Button btnBefore=rootView.findViewById(R.id.button_before);
             int number=getArguments().getInt(ARG_SECTION_NUMBER);
+
+
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
             switch (number){
@@ -144,6 +153,8 @@ public class OnBoardActivity extends AppCompatActivity {
                     getActivity().finish();
                 }
             });
+
+
 
             return rootView;
         }
