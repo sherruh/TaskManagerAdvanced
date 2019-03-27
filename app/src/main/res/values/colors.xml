@@ -8,4 +8,12 @@
     <color name="green">#008000</color>
     <color name="orange">#FF8C00</color>
     <color name="grey">	#696969</color>
+    <color name="theme1">#4ef1fc</color>
+    <color name="theme2">#e3fffc</color>
+    <color name="theme3">#baa7fc</color>
+    <color name="theme4">#3c93fc</color>
+    <color name="theme5">#9cf794</color>
+    <color name="theme6">#3cf985</color>
+    <color name="theme7">#d55e85</color>
+    <color name="theme8">#d5fc00</color>
 </resources>

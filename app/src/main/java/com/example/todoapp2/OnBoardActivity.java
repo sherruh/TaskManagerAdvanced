@@ -1,6 +1,8 @@
 package com.example.todoapp2;
 
+import android.content.ClipData;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +59,7 @@ public class OnBoardActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         dots=new ImageView[]{findViewById(R.id.dot1),findViewById(R.id.dot2),findViewById(R.id.dot3)};
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -77,10 +80,7 @@ public class OnBoardActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
 
     /**
      * A placeholder fragment containing a simple view.
@@ -149,6 +149,7 @@ public class OnBoardActivity extends AppCompatActivity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    saveState();
                     startActivity(new Intent(getContext(),MainActivity.class));
                     getActivity().finish();
                 }
@@ -159,10 +160,11 @@ public class OnBoardActivity extends AppCompatActivity {
             return rootView;
         }
 
-        public void clickOnFinish(View view) {
-            startActivity(new Intent(getActivity(),MainActivity.class));
-            getActivity().finish();
+        private void saveState() {
+            SharedPreferences preferences=getContext().getSharedPreferences("settings",MODE_PRIVATE);
+            preferences.edit().putBoolean("shown",true).apply();
         }
+
 
 
     }
@@ -191,7 +193,9 @@ public class OnBoardActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
+
             return PlaceholderFragment.newInstance(position );
+
         }
 
         @Override
@@ -200,4 +204,5 @@ public class OnBoardActivity extends AppCompatActivity {
             return 3;
         }
     }
+
 }

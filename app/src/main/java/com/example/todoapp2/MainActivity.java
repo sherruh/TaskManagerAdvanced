@@ -3,6 +3,7 @@ package com.example.todoapp2;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -39,16 +40,20 @@ public class MainActivity extends AppCompatActivity
     private Task.Status STATUS_FILTER;
     private AlertDialog.Builder ad;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(true){
+        SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
+        boolean shown=preferences.getBoolean("shown",false);
+        if(!shown){
             startActivity(new Intent(this,OnBoardActivity.class));
             finish();
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -259,6 +264,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -268,6 +275,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this,SettingsActivity.class));
             return true;
         }
 
@@ -295,6 +303,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_deleted) {
             switchTasks(tasksDeleted);
             STATUS_FILTER= Task.Status.DELETED;
+
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -311,5 +320,9 @@ public class MainActivity extends AppCompatActivity
         taskAdapter.notifyDataSetChanged();
         taskList.addAll(currentTasks);
         taskAdapter.notifyDataSetChanged();
+    }
+
+    public void onClickSettings(MenuItem item) {
+        Log.d("MyApp","Settings clicked");
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/settings_layout"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:text="Select color"
+        />
+
+    <GridLayout
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="4"
+        android:orientation="horizontal">
+        <ImageView android:src="@color/theme1" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme" />
+        <ImageView android:src="@color/theme2" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:src="@color/theme3" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:src="@color/theme4" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:src="@color/theme5" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:src="@color/theme6" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:src="@color/theme7" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:src="@color/theme8" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+
+
+    </GridLayout>
+
+</LinearLayout>
