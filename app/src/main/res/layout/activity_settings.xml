@@ -18,20 +18,23 @@
         />
 
     <GridLayout
+        android:id="@+id/grid_layout"
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:columnCount="4"
-        android:orientation="horizontal">
-        <ImageView android:src="@color/theme1" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme" />
-        <ImageView android:src="@color/theme2" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
-        <ImageView android:src="@color/theme3" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
-        <ImageView android:src="@color/theme4" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
-        <ImageView android:src="@color/theme5" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
-        <ImageView android:src="@color/theme6" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
-        <ImageView android:src="@color/theme7" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
-        <ImageView android:src="@color/theme8" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        android:orientation="horizontal"
+        android:onClick="onClickGrid"
+        android:background="@color/colorPrimaryDark">
+        <ImageView android:id="@+id/theme1_image" android:src="@color/theme1" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme" />
+        <ImageView android:id="@+id/theme2_image" android:src="@color/theme2" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:id="@+id/theme3_image" android:src="@color/theme3" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:id="@+id/theme4_image" android:src="@color/theme4" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:id="@+id/theme5_image" android:src="@color/theme5" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:id="@+id/theme6_image" android:src="@color/theme6" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:id="@+id/theme7_image" android:src="@color/theme7" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
+        <ImageView android:id="@+id/theme8_image" android:src="@color/theme8" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
 
 
     </GridLayout>
