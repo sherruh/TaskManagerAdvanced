@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.load.resource.drawable.DrawableResource;
 
@@ -38,10 +39,10 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onClickTheme(View view) {
-        LayoutInflater layout=getLayoutInflater();
+
         ImageView imageView= (ImageView) view;
         deselctAllImages();
-        imageView.setPadding(10,10,10,10);
+        imageView.setPadding(15,15,15,15);
 
     }
 
@@ -51,7 +52,11 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickGrid(View view) {
-
+    public void onClickFont(View view) {
+        TextView textView=(TextView)view;
+        ((TextView)findViewById(R.id.font_normal)).setBackgroundResource(R.color.white);
+        ((TextView)findViewById(R.id.font_bold)).setBackgroundResource(R.color.white);
+        ((TextView)findViewById(R.id.font_italic)).setBackgroundResource(R.color.white);
+        textView.setBackgroundResource(R.color.yellow);
     }
 }

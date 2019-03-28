@@ -25,7 +25,6 @@
         android:layout_gravity="center"
         android:columnCount="4"
         android:orientation="horizontal"
-        android:onClick="onClickGrid"
         android:background="@color/colorPrimaryDark">
         <ImageView android:id="@+id/theme1_image" android:src="@color/theme1" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme" />
         <ImageView android:id="@+id/theme2_image" android:src="@color/theme2" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
@@ -36,7 +35,29 @@
         <ImageView android:id="@+id/theme7_image" android:src="@color/theme7" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
         <ImageView android:id="@+id/theme8_image" android:src="@color/theme8" android:layout_width="60dp" android:layout_height="60dp" android:onClick="onClickTheme"/>
 
-
     </GridLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="100dp"
+        android:text="Select Font"
+        />
+
+    <GridLayout
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:columnCount="3"
+        android:orientation="horizontal"
+        >
+        <TextView android:id="@+id/font_normal" android:text="Normal " android:textStyle="normal" android:textSize="30sp" android:onClick="onClickFont" />
+        <TextView android:id="@+id/font_bold" android:text="Bold   " android:textStyle="bold" android:textSize="30sp" android:onClick="onClickFont"/>
+        <TextView android:id="@+id/font_italic" android:text="Italic" android:textStyle="italic" android:textSize="30sp" android:onClick="onClickFont"/>
+    </GridLayout>
+
 
 </LinearLayout>
