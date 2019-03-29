@@ -2,6 +2,7 @@ package com.example.todoapp2;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -58,7 +59,8 @@ public class SettingsActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.font_normal)).setBackgroundResource(R.color.white);
         ((TextView)findViewById(R.id.font_bold)).setBackgroundResource(R.color.white);
         ((TextView)findViewById(R.id.font_italic)).setBackgroundResource(R.color.white);
-        textView.setBackgroundResource(R.color.yellow);
+        textView.setBackgroundResource(getResources().getDrawable(-500040));
+
 
     }
 
