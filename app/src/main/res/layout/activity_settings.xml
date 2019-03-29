@@ -53,11 +53,21 @@
         android:layout_gravity="center"
         android:columnCount="3"
         android:orientation="horizontal"
-        >
-        <TextView android:id="@+id/font_normal" android:text="Normal " android:textStyle="normal" android:textSize="30sp" android:onClick="onClickFont" />
-        <TextView android:id="@+id/font_bold" android:text="Bold   " android:textStyle="bold" android:textSize="30sp" android:onClick="onClickFont"/>
-        <TextView android:id="@+id/font_italic" android:text="Italic" android:textStyle="italic" android:textSize="30sp" android:onClick="onClickFont"/>
+        android:background="@color/colorPrimaryDark" >
+        <TextView android:id="@+id/font_normal" android:text="Normal " android:textStyle="normal"
+            android:textSize="30sp" android:onClick="onClickFont" android:background="@color/white" />
+        <TextView android:id="@+id/font_bold" android:text="Bold   " android:textStyle="bold"
+            android:textSize="30sp" android:onClick="onClickFont" android:background="@color/white"/>
+        <TextView android:id="@+id/font_italic" android:text="Italic" android:textStyle="italic"
+            android:textSize="30sp" android:onClick="onClickFont" android:background="@color/white"/>
     </GridLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:onClick="onClickSave"
+        />
 
 
 </LinearLayout>

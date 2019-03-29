@@ -9,11 +9,13 @@
     
     
     <LinearLayout
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginRight="10dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:background="@color/white">
         <TextView
             android:id="@+id/tetxTitle"
             android:layout_marginLeft="50dp"

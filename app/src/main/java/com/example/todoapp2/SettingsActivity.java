@@ -1,5 +1,6 @@
 package com.example.todoapp2;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,5 +59,12 @@ public class SettingsActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.font_bold)).setBackgroundResource(R.color.white);
         ((TextView)findViewById(R.id.font_italic)).setBackgroundResource(R.color.white);
         textView.setBackgroundResource(R.color.yellow);
+
+    }
+
+    public void onClickSave(View view) {
+        Intent intent=new Intent();
+        setResult(RESULT_OK,intent);
+        finish();
     }
 }

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -29,6 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     private TaskAdapter taskAdapter;
     private List<Task> taskList;
     private List<Task> tasksAll;
@@ -39,12 +42,15 @@ public class MainActivity extends AppCompatActivity
     private int position;
     private Task.Status STATUS_FILTER;
     private AlertDialog.Builder ad;
+    private ConstraintLayout appBarLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        appBarLayout=findViewById(R.id.conten_main);
+
         SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
         boolean shown=preferences.getBoolean("shown",false);
         if(!shown){
@@ -167,16 +173,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode==RESULT_OK && data!=null){
-            Task task= (Task) data.getSerializableExtra("task");
-            switch (requestCode){
+        if(resultCode==RESULT_OK && data!=null) {
+            Task task = (Task) data.getSerializableExtra("task");
+            switch (requestCode) {
                 case 100:
                     distributeTask(task);
                     showTask(task);
                     break;
                 case 101:
-                    taskList.set(position,task);
-                    tasksAll.set(position,task);
+                    taskList.set(position, task);
+                    tasksAll.set(position, task);
                     removeOldTask(task);
                     distributeTask(task);
                     tasksAll.remove(0);
@@ -184,6 +190,9 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
             taskAdapter.notifyDataSetChanged();
+        }
+        if(resultCode==RESULT_OK && requestCode==102){
+                appBarLayout.setBackgroundResource(R.color.yellow);
         }
     }
 
@@ -275,7 +284,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this,SettingsActivity.class));
+            Intent intent=new Intent(MainActivity.this,SettingsActivity.class);
+            startActivityForResult(intent,102);
             return true;
         }
 
