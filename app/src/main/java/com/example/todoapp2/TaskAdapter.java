@@ -41,8 +41,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         Task task = list.get(i);
         viewHolder.textTitle.setText(task.getTitle());
         viewHolder.textDesc.setText(task.getDescription());
-        viewHolder.textTitle.setTypeface(viewHolder.textTitle.getTypeface(), Typeface.BOLD);
-        viewHolder.textDesc.setTypeface(viewHolder.textDesc.getTypeface(), Typeface.BOLD);
+        switch (font){
+            case "Normal":
+                viewHolder.textDesc.setTypeface(viewHolder.textDesc.getTypeface(), Typeface.NORMAL);
+                break;
+            case "Bold":
+                viewHolder.textDesc.setTypeface(viewHolder.textDesc.getTypeface(), Typeface.BOLD);
+                break;
+            case "Italic":
+                viewHolder.textDesc.setTypeface(viewHolder.textDesc.getTypeface(), Typeface.ITALIC);
+                break;
+        }
+
         setStatusColor(viewHolder,task);
     }
 

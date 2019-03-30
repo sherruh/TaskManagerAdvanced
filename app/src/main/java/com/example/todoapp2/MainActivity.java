@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     private Task.Status STATUS_FILTER;
     private AlertDialog.Builder ad;
     private ConstraintLayout contentMain;
+    String font;
 
     @Override
     protected void onResume()
@@ -50,11 +51,11 @@ public class MainActivity extends AppCompatActivity
         SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
         String color=preferences.getString("theme",
                 "-12807172");
-
         int intColor= Integer.parseInt(color);
-
         contentMain.setBackgroundColor(intColor);
         Log.d("MyApp","strted");
+        font=preferences.getString("font","Normal");
+        initList(font);
     }
 
 
@@ -93,7 +94,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        initList();
+
+        tasksAll=new ArrayList<>();
+        tasksCritical=new ArrayList<>();
+        tasksMajor=new ArrayList<>();
+        tasksMinor=new ArrayList<>();
+        tasksDeleted=new ArrayList<>();
+        taskList=new ArrayList<>();
+        generateTasks();
+        taskList.addAll(tasksAll);
+
         initAlertDialogDelete();
 
     }
@@ -131,21 +141,14 @@ public class MainActivity extends AppCompatActivity
         taskAdapter.notifyDataSetChanged();
     }
 
-    private void initList(){
-        tasksAll=new ArrayList<>();
-        tasksCritical=new ArrayList<>();
-        tasksMajor=new ArrayList<>();
-        tasksMinor=new ArrayList<>();
-        tasksDeleted=new ArrayList<>();
-        taskList=new ArrayList<>();
-        generateTasks();
-        taskList.addAll(tasksAll);
+    private void initList(String font){
+
 
         STATUS_FILTER=Task.Status.ALL;
 
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter=new TaskAdapter(taskList,"1");
+        taskAdapter=new TaskAdapter(taskList,font);
         recyclerView.setAdapter(taskAdapter);
         taskAdapter.setClickListener(new TaskAdapter.ClickListener() {
             @Override
