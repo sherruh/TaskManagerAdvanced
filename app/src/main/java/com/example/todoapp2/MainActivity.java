@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(DialogInterface dialog, int arg1) {
                 Toast.makeText(MainActivity.this, "Task deleted",
                         Toast.LENGTH_LONG).show();
-                deleteTask(taskList.get(position));
+
             }
         });
         ad.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

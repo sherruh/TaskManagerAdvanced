@@ -1,7 +1,10 @@
 package com.example.todoapp2;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
@@ -26,6 +29,7 @@ import java.util.Vector;
 public class SettingsActivity extends AppCompatActivity {
 
     List<ImageView> imageViewList;
+    ColorDrawable colorDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,14 +50,9 @@ public class SettingsActivity extends AppCompatActivity {
     public void onClickTheme(View view) {
 
         ImageView imageView= (ImageView) view;
+        colorDrawable = ((ColorDrawable)imageView.getDrawable());
 
-        Color background = imageView.getSolidColor();
-        int color=0;
-        if (background instanceof ColorDrawable) {
-             color= ((ColorDrawable) background).getColor();
-            // Use color here
-        }
-        Log.d("MyApp", String.valueOf(color));
+        Log.d("MyApp", String.valueOf(colorDrawable));
         deselctAllImages();
         imageView.setPadding(15,15,15,15);
 
@@ -62,6 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void deselctAllImages(){
         for(ImageView imageView:imageViewList){
             imageView.setPadding(0,0,0,0);
+            imageView.setImageDrawable(colorDrawable);
         }
     }
 
