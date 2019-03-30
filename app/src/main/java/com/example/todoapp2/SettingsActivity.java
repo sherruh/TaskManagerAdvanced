@@ -53,7 +53,10 @@ public class SettingsActivity extends AppCompatActivity {
         ImageView imageView= (ImageView) view;
         colorDrawable = ((ColorDrawable)imageView.getDrawable());
         SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
-        preferences.edit().putString("theme",String.valueOf(colorDrawable)).apply();
+        preferences.edit().putString("theme",String.valueOf(colorDrawable.getColor())).apply();
+        int intColor=colorDrawable.getColor();
+        String hexColor = String.format("#%06X", (0xFFFFFF & colorDrawable.getColor()));
+        Log.d("MyApp","Color hex "+hexColor);
         deselctAllImages();
         imageView.setPadding(15,15,15,15);
 

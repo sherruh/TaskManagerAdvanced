@@ -1,15 +1,14 @@
 package com.example.todoapp2;
 
-import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -42,14 +41,30 @@ public class MainActivity extends AppCompatActivity
     private int position;
     private Task.Status STATUS_FILTER;
     private AlertDialog.Builder ad;
-    private ConstraintLayout appBarLayout;
+    private ConstraintLayout contentMain;
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
+        String color=preferences.getString("theme",
+                "-12807172");
+
+        int intColor= Integer.parseInt(color);
+
+        contentMain.setBackgroundColor(intColor);
+        Log.d("MyApp","strted");
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        appBarLayout=findViewById(R.id.conten_main);
+        contentMain =findViewById(R.id.content_main);
+
+
 
         SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
         boolean shown=preferences.getBoolean("shown",false);
@@ -193,9 +208,7 @@ public class MainActivity extends AppCompatActivity
             }
             taskAdapter.notifyDataSetChanged();
         }
-        if(resultCode==RESULT_OK && requestCode==102){
-                appBarLayout.setBackgroundResource(R.color.yellow);
-        }
+
     }
 
     private void removeOldTask(Task task) {
@@ -287,7 +300,9 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Intent intent=new Intent(MainActivity.this,SettingsActivity.class);
-            startActivityForResult(intent,102);
+            startActivity(intent);
+
+
             return true;
         }
 
