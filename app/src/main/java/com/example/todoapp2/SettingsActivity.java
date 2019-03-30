@@ -1,6 +1,7 @@
 package com.example.todoapp2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -51,8 +52,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         ImageView imageView= (ImageView) view;
         colorDrawable = ((ColorDrawable)imageView.getDrawable());
-
-        Log.d("MyApp", String.valueOf(colorDrawable));
+        SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
+        preferences.edit().putString("theme",String.valueOf(colorDrawable)).apply();
         deselctAllImages();
         imageView.setPadding(15,15,15,15);
 
@@ -61,7 +62,9 @@ public class SettingsActivity extends AppCompatActivity {
     private void deselctAllImages(){
         for(ImageView imageView:imageViewList){
             imageView.setPadding(0,0,0,0);
-            imageView.setImageDrawable(colorDrawable);
+            //imageView.setImageDrawable(colorDrawable);
+
+
         }
     }
 
@@ -70,16 +73,28 @@ public class SettingsActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.font_normal)).setBackgroundResource(R.color.white);
         ((TextView)findViewById(R.id.font_bold)).setBackgroundResource(R.color.white);
         ((TextView)findViewById(R.id.font_italic)).setBackgroundResource(R.color.white);
-        textView.setBackgroundResource(R.color.yellow);
 
+        textView.setBackgroundResource(R.color.yellow);
+        Log.d("MyApp", String.valueOf(textView.getId()));
+        String font="Normal";
+        switch (textView.getId()){
+            case R.id.font_normal:
+                font="Normal";
+                break;
+            case R.id.font_bold:
+                font="Bold";
+                break;
+            case R.id.font_italic:
+                font="Italic";
+                break;
+        }
+
+        SharedPreferences preferences=getSharedPreferences("settings",MODE_PRIVATE);
+        preferences.edit().putString("font",font).apply();
 
     }
 
     public void onClickSave(View view) {
-        Intent intent=new Intent();
-        Log.d("MyApp","Color "+ getResources().getColor(R.color.yellow));
-        setResult(RESULT_OK,intent);
-
         finish();
     }
 }

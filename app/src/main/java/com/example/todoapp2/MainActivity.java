@@ -79,16 +79,18 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         initList();
-        initAlertDialodDelete();
+        initAlertDialogDelete();
+
     }
 
-    private void initAlertDialodDelete() {
+    private void initAlertDialogDelete() {
         ad=new AlertDialog.Builder(MainActivity.this);
         ad.setMessage("Delete this task?");
         ad.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
                 Toast.makeText(MainActivity.this, "Task deleted",
                         Toast.LENGTH_LONG).show();
+                deleteTask(taskList.get(position));
 
             }
         });
@@ -332,7 +334,4 @@ public class MainActivity extends AppCompatActivity
         taskAdapter.notifyDataSetChanged();
     }
 
-    public void onClickSettings(MenuItem item) {
-        Log.d("MyApp","Settings clicked");
-    }
 }
