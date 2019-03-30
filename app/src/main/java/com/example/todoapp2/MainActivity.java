@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
 
         RecyclerView recyclerView=findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        taskAdapter=new TaskAdapter(taskList);
+        taskAdapter=new TaskAdapter(taskList,"1");
         recyclerView.setAdapter(taskAdapter);
         taskAdapter.setClickListener(new TaskAdapter.ClickListener() {
             @Override

@@ -1,6 +1,7 @@
 package com.example.todoapp2;
 
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,9 +21,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     }
 
     List<Task> list;
+    String font;
 
-    public TaskAdapter(List<Task> list) {
+    public TaskAdapter(List<Task> list,String font) {
         this.list = list;
+        this.font=font;
     }
 
     @NonNull
@@ -38,6 +41,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         Task task = list.get(i);
         viewHolder.textTitle.setText(task.getTitle());
         viewHolder.textDesc.setText(task.getDescription());
+        viewHolder.textTitle.setTypeface(viewHolder.textTitle.getTypeface(), Typeface.BOLD);
+        viewHolder.textDesc.setTypeface(viewHolder.textDesc.getTypeface(), Typeface.BOLD);
         setStatusColor(viewHolder,task);
     }
 
